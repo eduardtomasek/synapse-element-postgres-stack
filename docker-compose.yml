@@ -1,0 +1,48 @@
+version: '3.3'
+
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  synapse:
+    container_name: synapse
+    image: matrixdotorg/synapse:latest
+    restart: always
+    ports:
+      - 8008:8008
+    volumes:
+      - /var/docker_data/matrix:/data
+
+  postgres:
+    container_name: postgres
+    image: postgres:14
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    volumes:
+     - /var/docker_data/postgresdata:/var/lib/postgresql/data
+
+    environment:
+     - POSTGRES_DB=synapse
+     - POSTGRES_USER=synapse
+     - POSTGRES_PASSWORD=SUPERSECRETLONGPASSWORD
+     - POSTGRES_INITDB_ARGS=--lc-collate C --lc-ctype C --encoding UTF8
+
+  element:
+    container_name: element
+    image: vectorim/element-web:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - /var/docker_data/element-config.json:/app/config.json
+
+volumes:
+  portainer_data:
