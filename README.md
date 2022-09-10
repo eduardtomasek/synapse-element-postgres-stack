@@ -129,7 +129,7 @@ And then start containers.
 sudo docker-compose up -d
 ```
 
-Use Portainer to check state of containers. Setting up database by Synapse take some time.
+Use Portainer to check state of containers. Setting up database by Synapse takes some time.
 
 When everything is ok and running without error setup first user.
 
