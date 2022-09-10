@@ -155,8 +155,7 @@ For self-hosted Matrix server and Element can be used Nginx as reverse proxy.
 
 Synapse Nginx config example.
 ```
-  GNU nano 4.8                                                                                      /etc/nginx/sites-available/matrix.digitalcliff.eu                                                                                                 
- server {
+server {
     listen 80;
     server_name matrix.YOUR_DOMAIN.com;
     return 301 https://$host$request_uri;
