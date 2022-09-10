@@ -126,7 +126,7 @@ database:
 And then start containers.
 
 ```bash
-sudo docker-compose up -d
+docker-compose up -d
 ```
 
 Use Portainer to check state of containers. Setting up database by Synapse takes some time.
